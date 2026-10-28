@@ -51,7 +51,6 @@ The workflow in `.github/workflows/ci.yml` runs on both `push` and `pull_request
 4. Open a pull request or inspect the Actions run and confirm that `validate` fails.
 5. Remove the syntax error, commit, and push again.
 6. Confirm that the workflow passes.
-7. Update this section with the actual run/commit details after completing the demonstration.
 
 ## Notes
 - Host resolution can succeed even when ping is blocked; in that case, `check-host` reports that ping failed or was blocked but exits successfully because DNS resolution worked.
