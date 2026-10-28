@@ -34,7 +34,7 @@ valid_host() {
 }
 
 check_host() {
-    local host="$ 1 "
+    local host="$1 
 
     if ! valid_host "$host"; then
         echo "Error: provide a valid hostname or IP address." >&2
