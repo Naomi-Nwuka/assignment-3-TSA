@@ -1,0 +1,38 @@
+name: Bash Diagnostic CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Make scripts executable
+        run: chmod +x app/*.sh scripts/*.sh tests/*.sh
+      - name: Lint Bash scripts
+        run: ./scripts/lint.sh
+
+  test:
+    runs-on: ubuntu-latest
+    needs: validate
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Make scripts executable
+        run: chmod +x app/*.sh scripts/*.sh tests/*.sh
+      - name: Run tests
+        run: ./tests/test.sh
+
+  docker:
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Make scripts executable
+        run: chmod +x app/*.sh scripts/*.sh tests/*.sh
+      - name: Build image and run smoke tests
+        run: ./scripts/build.sh
